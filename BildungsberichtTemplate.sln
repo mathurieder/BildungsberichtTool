@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BildungsberichtTemplate", "BildungsberichtTemplate\BildungsberichtTemplate.csproj", "{50EFA59C-9BA2-4975-9066-202C9B10B515}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50EFA59C-9BA2-4975-9066-202C9B10B515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50EFA59C-9BA2-4975-9066-202C9B10B515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50EFA59C-9BA2-4975-9066-202C9B10B515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50EFA59C-9BA2-4975-9066-202C9B10B515}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5965BAE3-C667-4DC6-91E4-7B7AC3AA3152}
+	EndGlobalSection
+EndGlobal

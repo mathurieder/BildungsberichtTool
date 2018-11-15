@@ -1,0 +1,53 @@
+﻿<Window x:Class="BildungsberichtTemplate.MainWindow" 
+        Height="1025" Width="1200" 
+        Title="Bildungsbericht"  
+        WindowStartupLocation="CenterScreen" WindowState="Normal" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns:model="clr-namespace:BildungsberichtTemplate">
+
+    <Window.Resources>
+        <DataTemplate x:Key="{DataTemplateKey {x:Type model:BewertungModel}}" DataType="{x:Type model:BewertungModel}">
+            <StackPanel Orientation="Horizontal" FocusVisualStyle="{x:Null}">
+                <Label FontWeight="Bold" Margin="0,0,0,0" Width="300" Content="{Binding Bewertung.SubKategorieText}" />
+                <RadioButton Name="A" Width="20"  Margin="0,8,0,0" IsChecked="{Binding NoteA}" Checked="Note_OnChecked" />
+                <RadioButton Name="B" Width="20" Margin="0,8,0,0" IsChecked="{Binding NoteB}" Checked="Note_OnChecked" />
+                <RadioButton Name="C" Width="20"  Margin="0,8,0,0" IsChecked="{Binding NoteC}" Checked="Note_OnChecked" />
+                <RadioButton Name="D"  Width="20"  Margin="0,8,0,0" IsChecked="{Binding NoteD}" Checked="Note_OnChecked" />
+                <TextBox LostFocus="Beschreibung_OnLostFokus" TextWrapping="Wrap" AcceptsReturn="True" Margin="30,0,0,0" Name="Beschreibung" Width="410" Text="{Binding Bewertung.Beschreibung}">
+                    <i:Interaction.Behaviors>
+                        <model:LineLimitingBehavior TextBoxMaxAllowedLines="6" />
+                    </i:Interaction.Behaviors>
+                </TextBox>
+                <ComboBox DisplayMemberPath="Beschreibung" Width="30" VerticalAlignment="Top" Height="30" SelectionChanged="Beschreibung_OnSelected"
+                          ItemsSource="{Binding Path=BewertungsBeschreibungen}" SelectedValue="{Binding Path=SelectedBeschreibung}" />
+                <Button Content="{materialDesign:PackIcon plus}" ToolTip="Als neue Vorlage speichern" Width="30" Height="30" VerticalAlignment="Top" Margin="71,0,0,0" Click="SaveAsNewTemplate_OnClick" Style="{DynamicResource MaterialDesignFloatingActionButton}" />
+                <Button Content="{materialDesign:PackIcon update}" ToolTip="Vorlage aktualisieren" Width="30" Height="30" VerticalAlignment="Top" Margin="20,0,0,0" Click="UpdateTemplate_OnClick" Style="{DynamicResource MaterialDesignFloatingActionButton}" />
+                <Button Content="{materialDesign:PackIcon delete}" ToolTip="Vorlage löschen" Width="30" Height="30" VerticalAlignment="Top" Margin="20,0,0,0" Click="DeleteTemplate_OnClick" Style="{DynamicResource MaterialDesignFloatingActionButton}" />
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Background="GhostWhite">
+            <StackPanel Name="mainPanel" Orientation="Vertical" Margin="50,50,0,40">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,30">
+                    <Label FontSize="18" FontWeight="ExtraBlack" Content="Coach:" Width="80" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                    <ComboBox FontSize="18" FontWeight="ExtraBlack" Name="Coach" Width="200" Height="30" SelectionChanged="Coach_OnSelectionChanged" />
+                    <Label FontSize="18" FontWeight="ExtraBlack" Content="Lernender:" Width="120" VerticalAlignment="Center" Margin="30,0,0,0"/>
+                    <ComboBox FontSize="18" FontWeight="ExtraBlack" Name="Lernender" Width="340" Height="30" SelectionChanged="Lernender_OnSelectionChanged" Margin="0,0,50,0" />
+                    <Button FontSize="18" Content="Bildungsbericht erstellen" Width="250" Height="30" HorizontalAlignment="Left" Margin="0,0,0,0" Click="CreatePDF_OnClick" />
+                </StackPanel>
+                <ListBox Name="BewertungsListBox" IsEnabled="False" ItemsSource="{Binding}" ></ListBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
